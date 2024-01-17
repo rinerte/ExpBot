@@ -11,7 +11,12 @@ namespace DataLayer.Models
         public long Expierence { get; set; } = 0;
         public int Streak { get; set; } = 1;
         public int Multiplier { get; set; } = 1;
-        public DateTime LastActivity { get; set; } = DateTime.Now;
+        public DateTime LastActivity { get; set; } = DateTime.Now.ToUniversalTime();
+        /// <summary>
+        /// Current action
+        /// </summary>
+        public int Action { get; set; } = 0;
+        public string Language { get; set; } = "en";
 
     }
 }

@@ -5,7 +5,7 @@ namespace DataLayer.Service
 {
     public partial class AppService 
     {
-        public async Task<User?> GetUser(long userId)
+        public async Task<User?> GetUserAsync(long userId)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.TelegramUserId == userId);
         }
