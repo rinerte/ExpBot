@@ -15,7 +15,7 @@ namespace ExpBot.Commands
                 User user = await connection.Context.GetUser(message.From.Id);
                 if (user != null)
                 {
-                    await client.SendTextMessageAsync(message.From.Id, "Hello! " + message.From.Username);
+                    await client.SendTextMessageAsync(message.From.Id, "Hello!" + message.From.Username);
                 }
                 else
                 {
