@@ -10,19 +10,29 @@ namespace ExpBot.Commands
 
         public override async Task Execute(Telegram.Bot.Types.Message message, TelegramBotClient client)
         {
+            string answer = "";
             using (Connection connection = new Connection())
             {
                 User user = await connection.Context.GetUser(message.From.Id);
                 if (user != null)
                 {
-                    await client.SendTextMessageAsync(message.From.Id, "Hello!" + message.From.Username);
+                    answer = "Hello!" + message.From.Username;
                 }
                 else
                 {
-                    await connection.Context.SaveNewUser(new User { TelegramUserId = message.From.Id });
-                    await client.SendTextMessageAsync(message.From.Id, "Your profile has been created! Now start geting exp");
+                    await connection.Context.SaveNewUser(new User { 
+                        TelegramUserId = message.From.Id,
+                        Expierence =0,
+                        LastActivity = DateTime.Now,
+                        Level = 1,
+                        Multiplier =1,
+                        Streak = 1
+                    });
+                    answer = "Your profile has been created! Now start geting exp";
                 }
             }
+
+            await client.SendTextMessageAsync(message.From.Id, answer);
         }
 
 

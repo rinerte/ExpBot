@@ -1,8 +1,6 @@
-﻿using DataLayer.Interface;
-
-namespace DataLayer.Service
+﻿namespace DataLayer.Service
 {
-    public partial class AppService : IAppService
+    public partial class AppService 
     {
         AppContext _context;
         public AppService(AppContext context)

@@ -1,10 +1,9 @@
-﻿using DataLayer.Interface;
-using DataLayer.Models;
+﻿using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Service
 {
-    public partial class AppService : IAppService
+    public partial class AppService 
     {
         public async Task<User?> GetUser(long userId)
         {
