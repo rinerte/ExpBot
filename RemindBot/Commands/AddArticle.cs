@@ -11,9 +11,9 @@ using Res = ExpBot.Resources.Strings;
 
 namespace ExpBot.Commands
 {
-    internal class AddRow : Command
+    internal class AddArticle : Command
     {
-        public override string Name => "/rows";
+        public override string Name => "/articles";
 
         public override async Task Execute(Telegram.Bot.Types.Message message, TelegramBotClient client)
         {
@@ -23,9 +23,9 @@ namespace ExpBot.Commands
             {
                 user = await connection.Context.GetUserAsync(message.From.Id);
                 if (user == null) return;
-                await connection.Context.ChangeUsersActionAsync(user.TelegramUserId, DataLayer.Enums.Actions.AddRows);
+                await connection.Context.ChangeUsersActionAsync(user.TelegramUserId, DataLayer.Enums.Actions.AddArticles);
             }
-            await client.SendTextMessageAsync(message.From.Id, Res.GetString(DataLayer.Enums.Strings.HELP_ROWS, user.Language));
+            await client.SendTextMessageAsync(message.From.Id, Res.GetString(DataLayer.Enums.Strings.HELP_ARTICLES, user.Language));
         }
     }
 }

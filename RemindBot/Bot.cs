@@ -21,7 +21,12 @@ namespace ExpBot
 
             commandsList = new List<Command>
             {
-                new Start()
+                new Start(),
+                new AddArticle(),
+                new AddPage(),
+                new AddRow(),
+                new Help(),
+                new GetInfo()
             };
 
             client = new TelegramBotClient(Key);

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Str = DataLayer.Enums.Strings;
 
 namespace ExpBot.Resources
 {
     internal static class Strings
     {
-        internal static string GetString(string stringName, string language)
+        internal static string GetString(Str stringName, string language)
         {
             switch (language)
             {

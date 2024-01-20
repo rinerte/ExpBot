@@ -1,7 +1,9 @@
 ﻿using DataLayer;
+using DataLayer.Enums;
 using DataLayer.Models;
 using Telegram.Bot;
 using Res = ExpBot.Resources.Strings;
+using Str = DataLayer.Enums.Strings;
 
 namespace ExpBot.Commands
 {
@@ -17,7 +19,7 @@ namespace ExpBot.Commands
                 User? user = await connection.Context.GetUserAsync(message.From.Id);
                 if (user != null)
                 {
-                    answer = Res.GetString("HELLO", user.Language) + ",\n"+(message.From.Username ?? message.From.FirstName);
+                    return;
                 }
                 else
                 {
@@ -29,10 +31,11 @@ namespace ExpBot.Commands
                         Level = 1,
                         Multiplier = 1,
                         Streak = 1,
-                        Language = "ru"
+                        Language = "ru",
+                        Action = Actions.Idle
                     };
                     await connection.Context.SaveNewUser(user);
-                    answer = Res.GetString("PROFILE_CREATED",user.Language);
+                    answer = Res.GetString(Str.PROFILE_CREATED, user.Language);
                 }
             }
 
