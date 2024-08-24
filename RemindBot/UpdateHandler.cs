@@ -48,6 +48,7 @@ namespace ExpBot
 
         private async static Task AddExpPoints(TelegramBotClient client, DataLayer.Connection connection, User user, long exp)
         {
+            bool lvlUp = false;
             if (user.Level <= Leveling.MAX_LEVEL)
             {
                 long setExp = user.Expierence + exp;
@@ -57,8 +58,13 @@ namespace ExpBot
                     await connection.Context.SetLevelAsync(user.TelegramUserId, user.Level + 1);
                     await connection.Context.SetExpierenceAsync(user.TelegramUserId, 0);
                     user.Level += 1;
+                    lvlUp = true;
                 }
-                await client.SendTextMessageAsync(user.TelegramUserId, Res.GetString(Str.LEVEL_UP, user.Language) + user.Level);
+                if (lvlUp)
+                {
+                    await client.SendTextMessageAsync(user.TelegramUserId, Res.GetString(Str.LEVEL_UP, user.Language) + user.Level);
+                }
+                
                 await connection.Context.SetExpierenceAsync(user.TelegramUserId, setExp);
             }
         }
@@ -119,7 +125,7 @@ namespace ExpBot
                         else
                         {
                             bool result = int.TryParse(message.Text, out var number);
-                            if (result == true)
+                            if (result == true && number>0)
                             {
                                 if (Leveling.MAX_ROWS_PER_DAY >= number + user.RowsThisDay)
                                 {
@@ -162,7 +168,7 @@ namespace ExpBot
                         else
                         {
                             bool result = int.TryParse(message.Text, out var number);
-                            if (result == true)
+                            if (result == true && number > 0)
                             {
                                 if (Leveling.MAX_BOOKPAGES_PER_DAY >= number + user.PagesThisDay)
                                 {
@@ -206,7 +212,7 @@ namespace ExpBot
                         else
                         {
                             bool result = int.TryParse(message.Text, out var number);
-                            if (result == true)
+                            if (result == true && number > 0)
                             {
                                 if (Leveling.MAX_ARTICLES_PER_DAY >= number + user.ArticlesThisDay)
                                 {

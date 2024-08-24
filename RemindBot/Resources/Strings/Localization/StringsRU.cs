@@ -62,7 +62,8 @@ namespace ExpBot.Resources.RU
                         Вернитесь завтра
                         """;
                 case Str.ERROR_NOT_A_NUMBER: return """
-                        Мне кажется, это не совсем число.
+                        Мне кажется, это не совсем правильный ввод.
+                        Введите положительное целое число
                         """;
                 case Str.SUCCESSFUL: return """
                         Запись добавлена
